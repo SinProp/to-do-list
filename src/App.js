@@ -41,7 +41,9 @@ const handleToggleComplete = (index) => {
 }
 
   return (
-    <div style={{ textAlign: "center"}}>
+    
+    <div style={{ marginTop: "20px", textAlign: "center"}}>
+      <h1>To-Do List</h1>
       <form onSubmit={(event) => {
       handleNewTodoSubmit(event);
     }}>
@@ -51,7 +53,7 @@ const handleToggleComplete = (index) => {
           type="text"
           value={newTodo}
           />
-          <div>
+          <div style={{ marginTop: "20px"}}>
             <button>Add</button>
           </div>
       </form>
@@ -59,9 +61,14 @@ const handleToggleComplete = (index) => {
 <hr />
 
       {todos.map((todo, i) =>{
+        const todoClasses = ["bold"]
+
+        if (todo.complete) {
+          todoClasses.push("strike-through");
+        }
           return (
           <div key={i}>
-            <span>{todo.text}</span>
+            <span className={todoClasses.join(" ")}>{todo.text}</span>
             <input onChange={(event) => {
               handleToggleComplete(i);
 
